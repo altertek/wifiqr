@@ -1,0 +1,97 @@
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.dataBox {
+    width: 300px;
+    height: 30px;
+    /* padding: 8px 16px; */
+    margin: 40px 0 10px 0;
+    font-size: 16px;
+    outline: none;
+    background-color: lightgray;
+    border-color: #0F67FF;
+    text-align: center;
+    border-width: 2px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn {
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 0 !important;
+    color: #fff;
+    background-color: #0F67FF;
+    border-color: #0F67FF;
+
+    position: relative;
+    height: 50px;
+    width: 300px;
+    margin: 10px 0;
+    padding: 8px 16px;
+    text-align: center;
+    border-width: 2px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #004ecb;
+    border-color: #004ecb;
+}
+
+.qrdiv {
+    text-align: center;
+}
+
+.qrcode {
+    margin: 30px 0;
+}
+
+.qrcode > img {
+    background-color: #fff;
+}
+
+.downloadBtn {
+    background: none;
+    border: none;
+    color: #809180;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.downloadBtn:hover {
+    border-bottom: dashed #809180 2px;
+}
+
+.hide {
+    display: none;
+}
+
+.toPrint {
+    display: none;
+}
+
+.error {
+    border-color: #e22416;
+}
+
+.highlight {
+    color: black;
+    font-weight: 600;
+    font-size: 25px;
+}

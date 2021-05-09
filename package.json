@@ -1,0 +1,23 @@
+{
+  "name": "wifiqr",
+  "version": "1.0.0",
+  "description": "Altertek WIFI QR generator",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/altertek/wifiqr.git"
+  },
+  "author": "Altertek",
+  "license": "ISC",
+  "dependencies": {
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-rev-all": "^3.0.0",
+    "gulp-sort": "^2.0.0",
+    "gulp-static-i18n-html": "^0.4.0"
+  }
+}

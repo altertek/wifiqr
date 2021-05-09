@@ -1,0 +1,16 @@
+{
+  "actions": {
+      "download": "Download",
+      "generate": "Generate",
+      "print": "Print"
+  },
+  "text": {
+      "title": "Altertek WiFi QR code Generator",
+      "scan": "Scan to connect",
+      "name": "Name",
+      "passwoord": "Password",
+      "printName": "Network name",
+      "printPassword": "Password",
+      "tooltip": "Wifi consumes 4 to 10 times less energy than 4G networks"
+  }
+}

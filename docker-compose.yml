@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  wifiqr:
+    build: .
+    container_name: "wifiqr"
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: 100m

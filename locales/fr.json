@@ -1,0 +1,19 @@
+{
+  "lang": "fr",
+  "actions": {
+      "download": "Télécharger",
+      "generate": "Générer",
+      "print": "Imprimer"
+  },
+  "text": {
+      "title": "Générateur QR code WiFi Altertek",
+      "scan": "Scanner pour se connecter",
+      "name": "Nom du réseau",
+      "password": "Mot de passe",
+      "tooltip": "Le Wifi consomme 4 à 10 fois moins d'énergie que les réseaux cellulaires",
+      "sourcecode": "Code source",
+      "generateqr": "Générer un QR code sur",
+      "noscanner1": "Pas de scanner sur votre téléphone ?",
+      "noscanner2": "Sur android, télécharger QR & Barcode Scanner"
+  }
+}

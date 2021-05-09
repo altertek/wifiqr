@@ -1,0 +1,94 @@
+@page
+{
+    size: auto;   /* auto is the initial value */
+    margin: auto;  /* this affects the margin in the printer settings */
+    margin-top: 0mm; /* Hide name */
+    margin-bottom: 0mm; /* Hide timestamp */
+
+    border:none;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+}
+a:visited {
+    style:none;
+}
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 60px;
+    margin: auto;
+
+}
+
+.dataBox {
+    display: none;
+}
+
+.btn {
+    display: none;
+}
+
+.toPrint {
+    display: inline;
+}
+
+.hideOnPrint {
+    display: none;
+}
+
+.qrdiv {
+    text-align: center;
+}
+
+.qrcode {
+    margin: 30px 0;
+}
+
+.qrcode > img {
+    background-color: #fff;
+}
+
+.downloadBtn {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    display: none;
+}
+
+
+.tooltip {
+    padding-top: 10%;
+    text-align:center;
+}
+
+a .printlink{
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+.leftTip {
+    float:left;
+    padding:1em;
+    padding-top:1.5em;
+    padding-right:2em;
+}
+
+.rightTip {
+    float:right;
+    padding:1em;
+    padding-top:1.5em;
+}

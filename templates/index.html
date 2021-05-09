@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html data-attr-t lang-t="lang">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-t="text.title"></title>
+    <link rel="stylesheet" media="all" href="/css/style.css">
+    <link rel="stylesheet" media="print" href="/css/print.css">
+    <script src="/js/qrcodelib.js" defer></script>
+    <script src="/js/script.js" defer></script>
+</head>
+
+<body>
+  <div class="main" id="main">
+    <h1 class="hideOnPrint" data-t="text.title"></h1>
+    <h1 class="toPrint" data-t="text.scan"></h1>
+    <input type="text" class="dataBox" name="data" data-attr-t placeholder-t="text.name" id="dataName"  autocomplete="false">
+    <input type="text" class="dataBox" name="data" data-attr-t placeholder-t="text.password"
+           id="dataPassword" value="" autocomplete="false">
+    <input type="hidden" class="dataBox" name="data" placeholder="Encryption"
+           id="encryption" value="WPA" autocomplete="false">
+    <input type="hidden" class="dataBox" name="data" placeholder="Hidden Network"
+           id="hidden" value="false"
+           autocomplete="false">
+
+    <button class="btn" id="generateBtn"  data-t="actions.generate">Generate</button>
+
+    <!-- <div class="qrdiv hide" id="qrdiv2"> -->
+    <!--   <button class="btn" id="downloadBtn" data-t="actions.download">Download</button> -->
+    <!--   <br> -->
+    <!--   <button class="btn" id="printBtn"  data-t="actions.print">Print</button> -->
+    <!-- </div> -->
+    <div class="qrdiv hide" id="qrdiv">
+      <div class="qrcode " id="qrcode"></div>
+    </div>
+      <div class="toPrint">
+        <p class="highlight">
+          <span  data-t="text.name"></span>:
+          <span id="wifiName"></span>
+        </p>
+        <p class="highlight">
+          <span data-t="text.password"></span>:
+          <span  id="wifiPassword"></span>
+        </p>
+      </div>
+
+    <div class="tooltip">
+      <h2   data-t="text.tooltip"></h2>
+    </div>
+    <div class="toPrint">
+      <div class="leftTip">
+        <b><span data-t="text.generateqr">Generate a qr code at </span><br>
+        <a class="printlink" href="https://wifiqr.altertek.org">wifiqr.altertek.org</b></a>
+      </div>
+      <div class="rightTip">
+        <b><span data-t="text.noscanner1">No qr reader on your phone?</span></b><br>
+          <span data-t="text.noscanner2">On Android: QR & Barcode Scanner</span>
+      </div>
+    </div>
+    <div class="hideOnPrint">
+      <h4><a href="https://github.com/altertek/wifiqr" data-t="text.sourcecode">Source code</a></h4>
+    </div>
+    <div class="author">
+      <h4><a href="https://altertek.org">Altertek.Org</a></h4>
+    </div>
+
+  </div>
+
+</body>
+</html>
