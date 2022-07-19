@@ -1,5 +1,11 @@
 # Altertek QR Code Generator
 
+<div align="center">
+  <a href="https://wifiqr.altertek.org">
+    <img src="screenshot.png" width="500">
+  </a>
+</div>
+
 `Use wifi, not 4G/5G !`
 
 This repository contains the code for Altertek's online QR Code Generator.  
