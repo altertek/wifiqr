@@ -40,7 +40,7 @@ jobs:
         github.ref == 'refs/heads/main' && github.event.repository.fork == false && env.DEPLOY_SSH != ''
 
     - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.1.5
+      uses: easingthemes/ssh-deploy@v2.2.11
       if: |
         github.ref == 'refs/heads/main' && github.event.repository.fork == false && env.DEPLOY_SSH != ''
       env:
