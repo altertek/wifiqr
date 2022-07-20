@@ -8,7 +8,7 @@
   "text": {
       "title": "Générateur QR code WiFi Altertek",
       "scan": "Scanner pour se connecter",
-      "name": "Nom du réseau",
+      "name": "Nom du réseau WiFi",
       "password": "Mot de passe",
       "tooltip": "Le Wifi consomme 4 à 10 fois moins d'énergie que les réseaux cellulaires",
       "sourcecode": "Code source",
