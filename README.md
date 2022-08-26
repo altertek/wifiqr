@@ -1,10 +1,8 @@
-# Altertek QR Code Generator
+<a href="https://wifiqr.altertek.org">
+  <img src="screenshot.png" width="325" align="right">
+</a>
 
-<div align="center">
-  <a href="https://wifiqr.altertek.org">
-    <img src="screenshot.png" width="500">
-  </a>
-</div>
+#  [WiFiQR.altertek.org](https://wifiqr.altertek.org)
 
 `Use wifi, not 4G/5G !`
 
@@ -18,8 +16,8 @@ Features:
 - PDF export throught the print function  
 
 ## Credits
-Original work from @bibekkakati : https://github.com/bibekkakati/qr-gen
+Original work from @bibekkakati : https://github.com/bibekkakati/qr-gen  
 
 ## Contributing
 Contributions are welcome !  
-Please see https://github.com/altertek/.github/blob/main/CONTRIBUTING.md
+Please see https://github.com/altertek/.github/blob/main/CONTRIBUTING.md  
