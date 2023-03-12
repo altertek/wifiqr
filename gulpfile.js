@@ -1,43 +1,44 @@
-const { src, dest, series } = require('gulp');
-const staticI18nHtml = require('gulp-static-i18n-html');
-const del = require('del');
+import gulp from 'gulp';
+import staticI18nHtml from 'gulp-static-i18n-html';
+import {deleteAsync} from 'del';
+import sort from 'gulp-sort'
+import RevAll from 'gulp-rev-all'
 
-const clean = () => {
-    return del(['dist', 'build']);
+export function clean() {
+    return deleteAsync(['dist', 'build']);
 }
 
-const copyBaseFiles = () => {
-    return src('src/base/*')
-        .pipe(dest('./dist'));
+export function copyBaseFiles() {
+    return gulp.src('src/base/*')
+        .pipe(gulp.dest('./dist'));
 }
 
 
-const copyAssets = () => {
-    return src('src/{assets,css,js}/**')
-        .pipe(dest('./dist'));
+export function copyAssets() {
+    return gulp.src('src/{assets,css,js}/**')
+        .pipe(gulp.dest('./dist'));
 }
 
-const i18n = () => {
-  return src('./templates/*.html')
+export function i18n() {
+  return gulp.src('./templates/*.html')
     .pipe(staticI18nHtml({
         localesPath: 'locales',
         locale: null,
         locales: ['en', 'fr']
     }))
-    .pipe(dest('./dist'));
+    .pipe(gulp.dest('./dist'));
 }
 
-
-var sort = require('gulp-sort');
-var RevAll = require("gulp-rev-all");
-
-const revision = () => {
-    return src("dist/**")
+export function revision() {
+    return gulp.src("dist/**")
         .pipe(sort())
         .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"]}))
-        .pipe(dest("build"));
+        .pipe(gulp.dest("build"));
 }
 
+const build = gulp.series(clean, copyBaseFiles, copyAssets, i18n, revision)
 
-// exports.build = build;
-exports.default = series(clean, copyBaseFiles, copyAssets, i18n, revision);
+/*
+ * Export a default task
+ */
+export default build;

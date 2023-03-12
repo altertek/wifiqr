@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Altertek WIFI QR generator",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx gulp"
@@ -14,7 +15,7 @@
   "author": "Altertek",
   "license": "ISC",
   "dependencies": {
-    "del": "^6.0.0",
+    "del": "^7.0.0",
     "gulp": "^4.0.2",
     "gulp-rev-all": "^3.0.0",
     "gulp-sort": "^2.0.0",
