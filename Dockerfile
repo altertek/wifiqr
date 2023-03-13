@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:16 as builder
+FROM node:alpine as builder
 
 WORKDIR /app
 
