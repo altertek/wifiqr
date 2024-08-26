@@ -16,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "del": "^7.0.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-rev-all": "^3.0.0",
     "gulp-sort": "^2.0.0",
     "gulp-static-i18n-html": "^0.4.0"
