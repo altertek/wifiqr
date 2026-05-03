@@ -2,11 +2,14 @@ version: "3"
 
 services:
   wifiqr:
-    build: .
+    # Use nginx directly as the build is served via volume
+    image: nginx:stable-alpine
     container_name: "wifiqr"
     restart: unless-stopped
     ports:
-      - "8000:80"
+      - "9000:80"
+    volumes:
+      - ./build:/usr/share/nginx/html:ro
     logging:
       driver: "json-file"
       options:

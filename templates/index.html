@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html data-attr-t lang-t="lang">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-t="text.title"></title>
     <link rel="stylesheet" media="all" href="/css/style.css">
@@ -11,62 +9,82 @@
     <script src="/js/qrcodelib.js" defer></script>
     <script src="/js/script.js" defer></script>
 </head>
-
 <body>
-  <div class="main" id="main">
-    <h1 class="hideOnPrint" data-t="text.title"></h1>
-    <h1 class="toPrint" data-t="text.scan"></h1>
-    <input type="text" class="dataBox" name="data" data-attr-t placeholder-t="text.name" id="dataName"  autocomplete="false">
-    <input type="text" class="dataBox" name="data" data-attr-t placeholder-t="text.password"
-           id="dataPassword" value="" autocomplete="false">
-    <input type="hidden" class="dataBox" name="data" placeholder="Encryption"
-           id="encryption" value="WPA" autocomplete="false">
-    <input type="hidden" class="dataBox" name="data" placeholder="Hidden Network"
-           id="hidden" value="false"
-           autocomplete="false">
+    <div class="container">
+        <h1 data-t="text.title"></h1>
 
-    <button class="btn" id="generateBtn"  data-t="actions.generate">Generate</button>
+        <div class="card">
+            <div class="field">
+                <label for="ssid" data-t="text.name"></label>
+                <input type="text" id="ssid" autocomplete="off" spellcheck="false">
+            </div>
 
-    <!-- <div class="qrdiv hide" id="qrdiv2"> -->
-    <!--   <button class="btn" id="downloadBtn" data-t="actions.download">Download</button> -->
-    <!--   <br> -->
-    <!--   <button class="btn" id="printBtn"  data-t="actions.print">Print</button> -->
-    <!-- </div> -->
-    <div class="qrdiv hide" id="qrdiv">
-      <div class="qrcode " id="qrcode"></div>
-    </div>
-      <div class="toPrint">
-        <p class="highlight">
-          <span  data-t="text.name"></span>:
-          <span id="wifiName"></span>
+            <div class="field" id="passwordField">
+                <label for="password" data-t="text.password"></label>
+                <div class="input-row">
+                    <input type="password" id="password" autocomplete="off">
+                    <button type="button" id="togglePassword" class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                            <line class="eye-slash" x1="2" y1="2" x2="22" y2="22"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <details class="advanced">
+                <summary data-t="text.advanced"></summary>
+                <div class="advanced-body">
+                    <div class="field">
+                        <label for="encryption" data-t="text.encryption"></label>
+                        <select id="encryption">
+                            <option value="WPA">WPA2 / WPA3</option>
+                            <option value="WEP">WEP</option>
+                            <option value="nopass">None</option>
+                        </select>
+                    </div>
+                    <label class="toggle-label">
+                        <input type="checkbox" id="hidden">
+                        <span data-t="text.hidden"></span>
+                    </label>
+                </div>
+            </details>
+
+            <div class="qr-result" id="qrResult" hidden>
+                <div id="qrcode"></div>
+                <p class="network-name" id="networkName"></p>
+                <div class="actions">
+                    <button type="button" id="downloadBtn" data-t="actions.download"></button>
+                    <button type="button" id="printBtn" data-t="actions.print"></button>
+                </div>
+            </div>
+        </div>
+        <p class="privacy">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span data-t="text.privacy"></span>
         </p>
-        <p class="highlight">
-          <span data-t="text.password"></span>:
-          <span  id="wifiPassword"></span>
-        </p>
-      </div>
 
-    <div class="tooltip">
-      <h2   data-t="text.tooltip"></h2>
-    </div>
-    <div class="toPrint">
-      <div class="leftTip">
-        <b><span data-t="text.generateqr">Generate a qr code at </span><br>
-        <a class="printlink" href="https://wifiqr.altertek.org">wifiqr.altertek.org</b></a>
-      </div>
-      <div class="rightTip">
-        <b><span data-t="text.noscanner1">No qr reader on your phone?</span></b><br>
-          <span data-t="text.noscanner2">On Android: QR & Barcode Scanner</span>
-      </div>
-    </div>
-    <div class="hideOnPrint">
-      <h4><a href="https://github.com/altertek/wifiqr" data-t="text.sourcecode">Source code</a></h4>
-    </div>
-    <div class="author">
-      <h4><a href="https://altertek.org">Altertek.Org</a></h4>
+        <footer class="footer">
+            <a href="https://github.com/altertek/wifiqr" target="_blank" rel="noopener">
+                <span data-t="text.sourcecode"></span>
+            </a>
+            <span>•</span>
+            <span>Altertek</span>
+        </footer>
     </div>
 
-  </div>
-
+    <div class="print-sheet">
+        <p class="print-scan-label" data-t="text.scan"></p>
+        <div id="printQrcode"></div>
+        <div class="print-info">
+            <div class="print-field">
+                <span data-t="text.name"></span>: <strong id="printNetwork"></strong>
+            </div>
+            <div class="print-field" id="printPasswordField">
+                <span data-t="text.password"></span>: <strong id="printPassword"></strong>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

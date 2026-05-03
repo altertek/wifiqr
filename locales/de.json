@@ -1,0 +1,18 @@
+{
+  "lang": "de",
+  "actions": {
+    "download": "PNG herunterladen",
+    "print": "Drucken / PDF"
+  },
+  "text": {
+    "title": "Altertek WLAN-QR-Generator",
+    "name": "Netzwerkname",
+    "password": "Passwort",
+    "encryption": "Verschlüsselung",
+    "hidden": "Verborgenes Netzwerk",
+    "advanced": "Erweiterte Optionen",
+    "scan": "Zum Verbinden scannen",
+    "privacy": "Alles wird auf Ihrem Gerät erstellt. Es werden keine Daten übertragen.",
+    "sourcecode": "Quellcode"
+  }
+}

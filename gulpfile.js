@@ -5,7 +5,7 @@ import sort from 'gulp-sort'
 import RevAll from 'gulp-rev-all'
 
 export function clean() {
-    return deleteAsync(['dist', 'build']);
+    return deleteAsync(['dist']);
 }
 
 export function copyBaseFiles() {
@@ -24,7 +24,7 @@ export function i18n() {
     .pipe(staticI18nHtml({
         localesPath: 'locales',
         locale: null,
-        locales: ['en', 'fr']
+        locales: ['en', 'fr', 'es', 'de', 'ru']
     }))
     .pipe(gulp.dest('./dist'));
 }
@@ -32,8 +32,12 @@ export function i18n() {
 export function revision() {
     return gulp.src("dist/**")
         .pipe(sort())
-        .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, ".html"]}))
+    .pipe(RevAll.revision({ dontRenameFile: [/^\/favicon.ico$/g, /^(.*).html$/g, /^\/html$/g]}))
         .pipe(gulp.dest("build"));
+}
+
+export function watch() {
+    gulp.watch(['src/**', 'templates/**', 'locales/**'], build);
 }
 
 const build = gulp.series(clean, copyBaseFiles, copyAssets, i18n, revision)
@@ -42,3 +46,4 @@ const build = gulp.series(clean, copyBaseFiles, copyAssets, i18n, revision)
  * Export a default task
  */
 export default build;
+export { build };

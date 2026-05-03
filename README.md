@@ -4,7 +4,7 @@
 
 #  [WiFiQR.altertek.org](https://wifiqr.altertek.org)
 
-`Use wifi, not 4G/5G !`
+`Use wifi, not cellular !`
 
 This repository contains the code for Altertek's online QR Code Generator.  
 The goal is to encourage people to use wifi whenever possible instead of cellular networks.  
@@ -14,6 +14,14 @@ Features:
 - A fully static solution  
 - A printer friendly output  
 - PDF export throught the print function  
+
+## Dev setup
+```
+npm ci
+npm run dev
+docker compose up -d
+```
+You should be ready to go on http://localhost:9000
 
 ## Credits
 Original work from @bibekkakati : https://github.com/bibekkakati/qr-gen  

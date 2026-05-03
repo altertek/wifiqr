@@ -1,0 +1,18 @@
+{
+  "lang": "es",
+  "actions": {
+    "download": "Descargar PNG",
+    "print": "Imprimir / PDF"
+  },
+  "text": {
+    "title": "Generador de QR WiFi de Altertek",
+    "name": "Nombre de red",
+    "password": "Contraseña",
+    "encryption": "Seguridad",
+    "hidden": "Red oculta",
+    "advanced": "Opciones avanzadas",
+    "scan": "Escanee para conectarse",
+    "privacy": "Todo se genera en su dispositivo. No se envía nada a ningún lado.",
+    "sourcecode": "Código fuente"
+  }
+}

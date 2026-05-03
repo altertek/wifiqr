@@ -1,143 +1,109 @@
-function escape_string (string) {
-    var to_escape = ['\\', ';', ',', ':', '"'];
-    var output = "";
-    for (var i=0; i<string.length; i++) {
-        if(to_escape.indexOf(string[i]) != -1) {
-            output += '\\'+string[i];
-        }
-        else {
-            output += string[i];
-        }
+const ssidInput     = document.getElementById('ssid');
+const passwordInput = document.getElementById('password');
+const passwordField = document.getElementById('passwordField');
+const togglePassBtn = document.getElementById('togglePassword');
+const encryptionSel = document.getElementById('encryption');
+const hiddenCheck   = document.getElementById('hidden');
+const qrResult      = document.getElementById('qrResult');
+const networkName   = document.getElementById('networkName');
+const printNetwork  = document.getElementById('printNetwork');
+const printPassword = document.getElementById('printPassword');
+const printPassField = document.getElementById('printPasswordField');
+const eyeSlash      = document.querySelector('.eye-slash');
+
+const screenQr = new QRCode('qrcode', {
+    width: 240,
+    height: 240,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H,
+});
+
+// SVG for crisp print output
+const printQr = new QRCode('printQrcode', {
+    width: 300,
+    height: 300,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H,
+    useSVG: true,
+});
+
+function escapeWifi(s) {
+    return s.replace(/[\\;,":]/g, c => '\\' + c);
+}
+
+function buildWifiString(ssid, password, encryption, hidden) {
+    return `WIFI:S:${escapeWifi(ssid)};T:${encryption};P:${escapeWifi(password)};H:${hidden};;`;
+}
+
+let debounceTimer;
+
+function generate() {
+    const ssid = ssidInput.value.trim();
+
+    if (!ssid) {
+        qrResult.hidden = true;
+        return;
     }
-    return output;
-};
 
+    const nopass     = encryptionSel.value === 'nopass';
+    const password   = nopass ? '' : passwordInput.value;
+    const hidden     = hiddenCheck.checked ? 'true' : 'false';
+    const wifiStr    = buildWifiString(ssid, password, encryptionSel.value, hidden);
 
-function create_wifi_string(ssid, password, encryptionType="nopass", isHidden="false")
-{
-    const escaped_ssid = escape_string(ssid)
-    const escaped_password = escape_string(password)
-    return [
-        'WIFI:',
-        `S:${escaped_ssid};`,
-        `T:${encryptionType};`,
-        `P:${escaped_password};`,
-        `H:${isHidden};`,
-        ';'
-    ].join('')
+    screenQr.makeCode(wifiStr);
+    printQr.makeCode(wifiStr);
+
+    networkName.textContent  = ssid;
+    printNetwork.textContent = ssid;
+    
+    if (!nopass && password) {
+        printPassword.textContent = password;
+        printPassField.style.display = 'block';
+    } else {
+        printPassField.style.display = 'none';
+    }
+
+    qrResult.hidden = false;
 }
 
-function main() {
-	// const dataName = document.getElementById("dataName");
-
-	const generateBtn = document.getElementById("generateBtn");
-	const downloadBtn = document.getElementById("downloadBtn");
-	const qrcode = document.getElementById("qrcode");
-	const qrdiv = document.getElementById("qrdiv");
-
-	const errorClassName = "error";
-	const dataBoxClassName = "dataBox";
-    //	const toHideClassName = "hide";
-    //	const qrdivClassName = "qrdiv";
-
-	var QR_CODE = new QRCode("qrcode", {
-		width: 260,
-		height: 260,
-		colorDark: "#000000",
-		colorLight: "#ffffff",
-		correctLevel: QRCode.CorrectLevel.H,
-	});
-
-	generateBtn.onclick = function (e) {
-		const ssid = dataName.value;
-		const password = dataPassword.value;
-		if (! ssid)
-            markDataBoxError(dataName);
-        if (! password)
-            markDataBoxError(dataPassword);
-        if (ssid && password) {
-            var qrstring = create_wifi_string(ssid, password, encryption.value, hidden.value)
-            generateQRCode(qrstring);
-            document.getElementById("wifiName").innerHTML = ssid;
-            document.getElementById("wifiPassword").innerHTML = password;
-            window.print();
-
-		}
-        return false;
-	};
-
-	dataName.onfocus = function (e) {
-		if (dataName.classList.contains(errorClassName)) {
-			// Removing error class
-			dataName.className = dataBoxClassName;
-		}
-	};
-	dataPassword.onfocus = function (e) {
-		if (dataPassword.classList.contains(errorClassName)) {
-			// Removing error class
-			dataPassword.className = dataBoxClassName;
-		}
-	};
-
-    // printBtn.onclick = function (e) {
-    //     window.print();
-    //     return false;
-    // }
-
-	// downloadBtn.onclick = function (e) {
-	// 	// Image tag
-	// 	const img = qrcode.getElementsByTagName("img")[0];
-	// 	// Canvas tag
-	// 	const canvas = qrcode.getElementsByTagName("canvas")[0];
-
-	// 	// Padding to QRCode
-	// 	const padding = 40;
-
-	// 	// Adding padding to width and height
-	// 	canvas.width = canvas.width + padding;
-	// 	canvas.height = canvas.height + padding;
-
-	// 	// Canvas context
-	// 	const context = canvas.getContext("2d");
-	// 	// Clearing previous content
-	// 	context.clearRect(0, 0, canvas.width, canvas.height);
-	// 	// Making the background white
-	// 	context.fillStyle = "#ffffff";
-	// 	context.fillRect(0, 0, canvas.width, canvas.height);
-	// 	// Adding the image of QRCode
-	// 	// x and y are padding / 2
-	// 	context.drawImage(img, padding / 2, padding / 2);
-    //     context.fillStyle = "black";
-    //     context.textAlign = "center";
-	// 	// Getting base64 url
-	// 	const image = canvas.toDataURL("image/png", 1);
-	// 	const filename = "QR_Code_" + Date.now() + ".png";
-	// 	downloadImage(image, filename);
-	// };
-
-	function markDataBoxError(field) {
-		const prevClassName = field.className;
-		field.className = prevClassName + " " + errorClassName;
-	}
-
-	function generateQRCode(data) {
-		QR_CODE.clear();
-		QR_CODE.makeCode(data);
-		// Show QRCode div
-        qrdiv.style.display = 'block';
-        // qrdiv2.style.display = 'block';
-	}
-
-	function downloadImage(image, filename) {
-		// Creating hidden <a> tag to download
-		var element = document.createElement("a");
-		element.setAttribute("href", image);
-		element.setAttribute("download", filename);
-		// element.setAttribute("class", toHideClassName);
-		document.body.appendChild(element);
-		element.click();
-		document.body.removeChild(element);
-	}
+function onInput() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(generate, 280);
 }
 
-main();
+ssidInput.addEventListener('input', onInput);
+passwordInput.addEventListener('input', onInput);
+hiddenCheck.addEventListener('change', generate);
+
+encryptionSel.addEventListener('change', () => {
+    passwordField.hidden = encryptionSel.value === 'nopass';
+    generate();
+});
+
+togglePassBtn.addEventListener('click', () => {
+    const visible = passwordInput.type === 'text';
+    passwordInput.type = visible ? 'password' : 'text';
+    eyeSlash.style.display = visible ? 'none' : 'block';
+});
+
+document.getElementById('downloadBtn').addEventListener('click', () => {
+    // canvas.toBlob() + object URL works across Android Chrome/Firefox;
+    // data URI hrefs are blocked for downloads on many mobile browsers.
+    const canvas = document.querySelector('#qrcode canvas');
+    if (!canvas) return;
+
+    canvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `wifi-${ssidInput.value.trim() || 'qr'}.png`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+    }, 'image/png');
+});
+
+document.getElementById('printBtn').addEventListener('click', () => window.print());
